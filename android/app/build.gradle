@@ -1,0 +1,55 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Apply the Google services plugin
+}
+
+android {
+    namespace = "com.example.expense_tracker"
+    compileSdk = 34
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.expense_tracker"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Replace with a release signing config when ready
+        }
+    }
+}
+
+dependencies {
+    // Use the Firebase BoM to manage versions
+    implementation platform('com.google.firebase:firebase-bom:33.8.0')
+
+    // Firebase Analytics (example)
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+
+    // Add other Firebase dependencies as needed
+    // Refer to: https://firebase.google.com/docs/android/setup#available-libraries
+}
+
+flutter {
+    source = "../.."
+}
+
+// Apply the Google services plugin
+apply plugin: 'com.google.gms.google-services'
